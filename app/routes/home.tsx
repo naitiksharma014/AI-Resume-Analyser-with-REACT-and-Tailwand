@@ -13,15 +13,16 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  const { auth } = usePuterStore();
+  const { auth, isLoading } = usePuterStore();
   const [resumes, setResumes] = useState([]);
 
   useEffect(() => {
-    if (!auth?.isAuthenticated) {
-      window.location.href = "/auth?next=/";
-    }
-  }, [auth?.isAuthenticated]);
+  if (isLoading) return;
 
+  if (!auth?.isAuthenticated) {
+    window.location.href = "/auth?next=/";
+  }
+}, [isLoading, auth?.isAuthenticated]);
   return (
     <main className="bg-[url('/images/bg-main.svg')] bg-cover">
       <Navbar />

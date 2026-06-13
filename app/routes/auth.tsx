@@ -2,10 +2,10 @@ import { usePuterStore } from "~/lib/puter";
 import { useEffect } from "react";
 import { useLocation } from "react-router";
 
-export const meta = () => [
+export const meta = () => ([
   { title: "ResumeAI | Auth" },
   { name: "description", content: "Log into your account" },
-];
+]);
 
 const Auth = () => {
   const { isLoading, auth } = usePuterStore();

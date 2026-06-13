@@ -26,12 +26,12 @@ const upload = () => {
             jobDescription,
             file
         }:
-        {
-            companyName: string,
-            jobTitle: string,
-            jobDescription: string,
-            file: File
-        }
+            {
+                companyName: string,
+                jobTitle: string,
+                jobDescription: string,
+                file: File
+            }
 
     ) => {
         setIsProcessing(true);
@@ -44,10 +44,10 @@ const upload = () => {
         }
 
         setStatusText('Converting to image...');
-        
+
         const imageFile = await convertPdfToImage(file);
 
-        if(!imageFile.file) {
+        if (!imageFile.file) {
             return setStatusText('Failed to convert PDF to image. Please ensure your PDF is valid and try again.');
         }
 
@@ -77,29 +77,42 @@ const upload = () => {
         const feedback = await ai.feedback(
             uploadedFile.path,
             prepareInstructions(
-                { 
-                    jobTitle, 
+                {
+                    jobTitle,
                     jobDescription,
                     AIResponseFormat: "json",
                 }
             )
         );
 
-        if(!feedback) {
+        if (!feedback) {
             setStatusText('Failed to analyze resume. Please try again.');
             return;
         }
 
-        const feedbackText = typeof feedback.message.content === 'string' 
-            ? feedback.message.content 
-            : feedback.message.content[0].text ;
+        const feedbackText = typeof feedback.message.content === 'string'
+            ? feedback.message.content
+            : feedback.message.content[0].text;
 
         data.feedback = JSON.parse(feedbackText);
         await kv.set(`resume:${uuid}`, JSON.stringify(data));
+
+        // here
+        console.log("UUID:", uuid);
+        console.log("Navigate to:", `/resume/${uuid}`);
+
+        const saved = await kv.get(`resume:${uuid}`);
+        console.log("Saved data exists:", saved);
+        //--------------------------------------------------
+
+
+
+
         setStatusText('Analysis complete! Redirecting to results...');
 
         console.log(data);
-        
+        navigate(`/resume/${uuid}`);
+
     };
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
