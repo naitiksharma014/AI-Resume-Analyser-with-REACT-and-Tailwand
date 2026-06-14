@@ -67,7 +67,7 @@ const upload = () => {
             imagePath: uploadedImage.path,
             companyName,
             jobTitle, jobDescription,
-            feedback: null,
+            feedback: '',
 
         }
         await kv.set(`resume:${uuid}`, JSON.stringify(data));
@@ -80,7 +80,7 @@ const upload = () => {
                 {
                     jobTitle,
                     jobDescription,
-                    AIResponseFormat: "json",
+                    //AIResponseFormat: "json",
                 }
             )
         );
@@ -94,15 +94,46 @@ const upload = () => {
             ? feedback.message.content
             : feedback.message.content[0].text;
 
-        data.feedback = JSON.parse(feedbackText);
+        //---------------------------------
+        // console.log("RAW AI RESPONSE:");
+        // console.log(feedbackText);
+
+        //------------------------------
+
+
+        try {
+            const cleanedText = feedbackText
+                .replace(/```json/g, '')
+                .replace(/```/g, '')
+                .trim();
+
+            data.feedback = JSON.parse(cleanedText);
+
+            // console.log("Parsed Feedback:", data.feedback);
+        } catch (error) {
+            // console.error("JSON Parse Error:", error);
+            // console.log("Problematic Response:", feedbackText);
+
+            setStatusText("AI returned invalid JSON. Check console.");
+            return;
+        }
+
+
+
+        //----------
+        // console.log("Parsed Feedback:", data.feedback);
+        //----------
+
+
+
         await kv.set(`resume:${uuid}`, JSON.stringify(data));
 
         // here
-        console.log("UUID:", uuid);
-        console.log("Navigate to:", `/resume/${uuid}`);
+        // console.log("UUID:", uuid);
+        // console.log("Navigate to:", `/resume/${uuid}`);
 
-        const saved = await kv.get(`resume:${uuid}`);
-        console.log("Saved data exists:", saved);
+        // const saved = await kv.get(`resume:${uuid}`);
+        // console.log("Saved data exists:", saved);
         //--------------------------------------------------
 
 
