@@ -4,7 +4,6 @@ import { usePuterStore } from '~/lib/puter';
 import Summary from '../components/Summary'
 import ATS from '../components/ATS'
 import Details from '../components/Details'
-//import type { Feedback } from '~/types';
 
 
 
@@ -34,18 +33,11 @@ const resume = () => {
   useEffect(() => {
     const loadResume = async () => {
 
-      console.log("Resume page loaded"); // here
-      console.log("ID:", id);           // here
-
 
       const resume = await kv.get(`resume:${id}`);
 
 
-      console.log("KV result:", resume);   // here
-
-
       if (!resume) {
-        console.log("Resume not found!");  // here
         return;
       }
 
@@ -65,15 +57,6 @@ const resume = () => {
       setImageUrl(imageUrl);
 
       setFeedback(data.feedback);
-
-
-
-      //-----------------------
-
-      console.log("DATA:", data);
-      console.log("FEEDBACK:", data.feedback);
-      
-      //-----------------------
     }
 
     loadResume();

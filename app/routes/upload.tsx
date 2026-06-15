@@ -7,8 +7,18 @@ import { convertPdfToImage } from '~/lib/pdf2img';
 import { prepareInstructions } from '../../constants';
 import { generateUUID } from "~/lib/utils";
 
+
+
+
+export const meta = () => ([
+  { title: "ResumeAI | Analysing" },
+  { name: "description", content: "Upload and Analyze you Resume" },
+]);
+
+
+
 const upload = () => {
-    const { auth, fs, isLoading, ai, kv } = usePuterStore();
+    const { fs, ai, kv } = usePuterStore();
     const navigate = useNavigate()
     const [isProcessing, setIsProcessing] = useState(false)
     const [statusText, setStatusText] = useState('');
@@ -94,12 +104,6 @@ const upload = () => {
             ? feedback.message.content
             : feedback.message.content[0].text;
 
-        //---------------------------------
-        // console.log("RAW AI RESPONSE:");
-        // console.log(feedbackText);
-
-        //------------------------------
-
 
         try {
             const cleanedText = feedbackText
@@ -109,34 +113,13 @@ const upload = () => {
 
             data.feedback = JSON.parse(cleanedText);
 
-            // console.log("Parsed Feedback:", data.feedback);
+           
         } catch (error) {
-            // console.error("JSON Parse Error:", error);
-            // console.log("Problematic Response:", feedbackText);
-
             setStatusText("AI returned invalid JSON. Check console.");
             return;
         }
 
-
-
-        //----------
-        // console.log("Parsed Feedback:", data.feedback);
-        //----------
-
-
-
         await kv.set(`resume:${uuid}`, JSON.stringify(data));
-
-        // here
-        // console.log("UUID:", uuid);
-        // console.log("Navigate to:", `/resume/${uuid}`);
-
-        // const saved = await kv.get(`resume:${uuid}`);
-        // console.log("Saved data exists:", saved);
-        //--------------------------------------------------
-
-
 
 
         setStatusText('Analysis complete! Redirecting to results...');
