@@ -1,87 +1,86 @@
-# Welcome to React Router!
+An AI-powered Resume Analysis platform built with **React**, **Tailwind CSS**, and **Puter.js** that helps users evaluate and improve their resumes through ATS scoring, content analysis, skills assessment, and personalized feedback.
 
-A modern, production-ready template for building full-stack React applications using React Router.
+## 🚀 Live Demo
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+🌐 **Live Website:** https://resumeai-dev.vercel.app/
 
-## Features
+> Upload your resume and receive AI-generated insights to improve your chances of passing Applicant Tracking Systems (ATS) and impressing recruiters.
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+------------------------------------------------------------
 
-## Getting Started
+✨Features
 
-### Installation
+1. 📄 Resume Upload
 
-Install the dependencies:
+* Upload resumes in PDF format.
+* Fast and seamless file processing.
 
-```bash
-npm install
-```
+2. 🤖 AI-Powered Analysis
 
-### Development
+* Detailed AI-generated resume review.
+* Instant feedback on resume quality.
 
-Start the development server with HMR:
+3. 📊 ATS Score Evaluation
 
-```bash
-npm run dev
-```
+* ATS compatibility score.
+* Suggestions to improve ATS performance.
 
-Your application will be available at `http://localhost:5173`.
+4. 📝 Content Review
 
-## Building for Production
+* Checks content quality and relevance.
+* Identifies weak descriptions and missing details.
 
-Create a production build:
+5. 🏗️ Structure Analysis
 
-```bash
-npm run build
-```
+* Evaluates formatting and organization.
+* Recommends improvements for readability.
 
-## Deployment
+6. 🎯 Skills Assessment
 
-### Docker Deployment
+* Reviews technical and professional skills.
+* Highlights potential skill gaps.
 
-To build and run using Docker:
+7. 📱 Responsive Design
 
-```bash
-docker build -t my-app .
+* Optimized for desktop, tablet, and mobile devices.
 
-# Run the container
-docker run -p 3000:3000 my-app
-```
+----------------------------------------------------
 
-The containerized application can be deployed to any platform that supports Docker, including:
+🛠️ Tech Stack
 
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
+Frontend
 
-### DIY Deployment
+* React.js
+* Vite
+* Tailwind CSS
 
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
+ AI Integration
 
-Make sure to deploy the output of `npm run build`
+* Puter.js
+* Puter AI APIs
 
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
+Deployment
 
-## Styling
+* Vercel
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+--------------------------------------------------
 
----
+## 🎯 How It Works
 
-Built with ❤️ using React Router.
+1. Upload your resume.
+2. The application extracts resume content.
+3. Puter AI analyzes the resume.
+4. ATS score and detailed feedback are generated.
+5. Review suggestions and improve your resume.
+
+--------------------------------------------------
+
+## 🌟 Future Enhancements
+
+* Job Description Matching
+* Cover Letter Generator
+* Resume Templates
+* Resume Comparison Tool
+* Downloadable Analysis Reports
+* Multi-Language Support
+
